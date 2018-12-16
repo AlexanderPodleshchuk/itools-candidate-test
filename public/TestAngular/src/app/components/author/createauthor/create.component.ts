@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {AuthorsService} from '../../../authors.service';
-import {switchMap} from 'rxjs/operators';
-import {of} from 'rxjs';
-import {Author} from '../../../app.author.model';
-import {Book} from '../../../app.book.model';
-import {BookService} from '../../../book.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Author } from '../../../models/author.model';
+import { Book } from '../../../models/book.model';
+import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
-export class CreateComponent implements OnInit {
+export class CreateauthorComponent implements OnInit {
 
   createForm: FormGroup;
   mode = 'Update';
@@ -23,10 +23,10 @@ export class CreateComponent implements OnInit {
   authorBooks: Book[] = [];
 
   constructor(private authorsService: AuthorsService,
-              private fb: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private bookService: BookService) {
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private bookService: BookService) {
   }
 
   saveAuthor() {
@@ -83,7 +83,7 @@ export class CreateComponent implements OnInit {
       const id = +params.get('id');
       if (id === -1) {
         this.mode = 'Add';
-        return of(<Author>{book: []});
+        return of(<Author>{ book: [] });
       }
       return this.authorsService.getAuthorById(id);
     })).subscribe((author: Author) => {

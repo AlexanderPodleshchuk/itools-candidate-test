@@ -20,9 +20,9 @@
         <input matInput placeholder="Book isbn" formControlName="isbn" #isbn>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-          <input matInput [matDatepicker]="year" formControlName="year" placeholder="Year">
-          <mat-datepicker-toggle matSuffix [for]="year"></mat-datepicker-toggle>
-          <mat-datepicker #year></mat-datepicker>
+        <input matInput [matDatepicker]="year" formControlName="year" placeholder="Year">
+        <mat-datepicker-toggle matSuffix [for]="year"></mat-datepicker-toggle>
+        <mat-datepicker #year></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput placeholder="EBook" formControlName="ebook" #ebook>
@@ -32,10 +32,8 @@
       </mat-form-field>
 
       <mat-form-field id="meta-tag-field" class="field-full-width">
-        <input matInput #authorInput name="author" formControlName="author" placeholder="Author"
-               [matAutocomplete]="autoAuthor">
-        <mat-autocomplete #autoAuthor="matAutocomplete" [displayWith]="displayEntity"
-                          (optionSelected)="authorInput.value = '';">
+        <input matInput #authorInput name="author" formControlName="author" placeholder="Author" [matAutocomplete]="autoAuthor">
+        <mat-autocomplete #autoAuthor="matAutocomplete" [displayWith]="displayEntity" (optionSelected)="authorInput.value = '';">
           <mat-option *ngFor="let author of filteredAuthors" [value]="author">
             {{author.firstName}}
           </mat-option>
@@ -51,8 +49,7 @@
       <mat-divider></mat-divider>
       <br><br>
       <button mat-raised-button color="accent" routerLink="/books">Back</button>
-      <button type="submit" (click)="saveBook()"
-        mat-raised-button [disabled]="createForm.invalid" color="primary">Save</button>
+      <button type="submit" (click)="saveBook()" mat-raised-button [disabled]="createForm.invalid" color="primary">Save</button>
     </form>
   </mat-card>
 </div>

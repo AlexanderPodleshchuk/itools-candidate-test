@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from 'itools-candidate-test/public/TestAngular/src/app/app.book.model';
+import { Book } from '../models/book.model';
 
 @Injectable({
   providedIn: 'root'

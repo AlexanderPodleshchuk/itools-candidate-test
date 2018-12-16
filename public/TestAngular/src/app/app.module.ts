@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 import {
   MatToolbarModule,
@@ -25,22 +25,20 @@ import {
   MatAutocompleteModule, MatChipsModule
 } from '@angular/material';
 
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthorComponent } from './components/author/author.component';
-import { CreateComponent } from './components/author/create/create.component';
 
-import { AuthorsService } from './authors.service';
-import { BookService } from './book.service';
+import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
+import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
+import { AuthorComponent } from './components/author/author.component';
+import { CreateauthorComponent } from './components/author/createauthor/create.component';
 import { BooksComponent } from './components/books/books.component';
-import { CreatebookComponent } from './components/books/details/createbook/createbook.component';
+import { CreatebookComponent } from './components/books/createbook/createbook.component';
 
 
 const routes: Routes = [
 
-  { path: 'author/:id', component: CreateComponent },
+  { path: 'author/:id', component: CreateauthorComponent },
   { path: 'authors', component: AuthorComponent },
   { path: '', redirectTo: 'authors', pathMatch: 'full' },
 
@@ -53,13 +51,12 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     AuthorComponent,
-    CreateComponent,
+    CreateauthorComponent,
     BooksComponent,
     CreatebookComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../../book.service';
+import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
 
-import { Book } from '../../app.book.model';
+import { Book } from '../../models/book.model';
 
 @Component({
   selector: 'app-books',
@@ -13,11 +12,11 @@ import { Book } from '../../app.book.model';
 export class BooksComponent implements OnInit {
 
   books: Book[] = [];
-  displayedColumns = ['_id', 'name', 'pages', 'isbn', 'year','ebook', 'publishing', 'author', 'actions'];
- 
+  displayedColumns = ['_id', 'name', 'pages', 'isbn', 'year', 'ebook', 'publishing', 'author', 'actions'];
+
   constructor(private booksService: BookService, private router: Router) {
 
-   }
+  }
 
   ngOnInit() {
     this.fetchBooks();
