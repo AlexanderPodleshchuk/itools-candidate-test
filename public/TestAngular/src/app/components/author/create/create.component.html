@@ -1,0 +1,52 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create a new Author</h3>
+    </section>
+    <mat-divider> </mat-divider>
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Author ID" formControlName="id" #id>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Author Email" formControlName="email" #email>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Author FirstName" formControlName="firstName" #firstName>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Author SecondName" formControlName="secondName" #secondName>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+          <input matInput [matDatepicker]="birthDate" formControlName="birthDate" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+          <mat-datepicker #birthDate></mat-datepicker>
+        <!-- <input matInput placeholder="Author BirthDate" formControlName="birthDate" #birthDate> -->
+      </mat-form-field>
+      <mat-form-field id="meta-tag-field" class="field-full-width">
+        <input matInput #bookInput name="book" formControlName="book" placeholder="Book"
+               [matAutocomplete]="autoBook">
+        <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="displayEntity"
+                          (optionSelected)="bookInput.value = '';">
+          <mat-option *ngFor="let book of filteredBooks" [value]="book">
+            {{book.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-chip-list #chipList class="meta-tags-chips">
+        <mat-chip *ngFor="let book of authorBooks" (removed)="onRemoveAuthorBook(book._id)">
+          <a [routerLink]="'/book/' + book._id">{{book.name}}</a>
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/authors">Back</button>
+      <button type="submit" (click)="saveAuthor()"
+        mat-raised-button [disabled]="createForm.invalid" color="primary">Save</button>
+
+    </form>
+  </mat-card>
+</div>
