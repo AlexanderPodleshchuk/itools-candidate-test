@@ -12,23 +12,29 @@
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required minlength="3" placeholder="Book Name" formControlName="name" #name>
+        <mat-error *ngIf="name.required">Book name not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required placeholder="Book pages" formControlName="pages" #pages>
+        <mat-error *ngIf="pages.required">Pages not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required minlength="5" placeholder="Book isbn" formControlName="isbn" #isbn>
+        <mat-error *ngIf="isbn.required">Isbn not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required [matDatepicker]="year" formControlName="year" placeholder="Year">
         <mat-datepicker-toggle matSuffix [for]="year"></mat-datepicker-toggle>
         <mat-datepicker #year></mat-datepicker>
+        <mat-error *ngIf="year.required">Year not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required placeholder="EBook" formControlName="ebook" #ebook>
+        <mat-error *ngIf="ebook.required">EBook not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required minlength="6" placeholder="Book Publishing" formControlName="publishing" #publishing>
+        <mat-error *ngIf="publishing.required">Publishing not correct</mat-error>
       </mat-form-field>
 
       <mat-form-field id="meta-tag-field" class="field-full-width">

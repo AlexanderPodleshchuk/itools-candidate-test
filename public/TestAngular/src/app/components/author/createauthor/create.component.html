@@ -12,17 +12,21 @@
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput minlength="9" required placeholder="Author Email" formControlName="email" #email>
+        <mat-error *ngIf="email.required">Email not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required minlength="3" placeholder="Author FirstName" formControlName="firstName" #firstName>
+        <mat-error *ngIf="firstName.required">FirstName not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required minlength="5" placeholder="Author SecondName" formControlName="secondName" #secondName>
+        <mat-error *ngIf="secondName.required">SecondName not correct</mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input matInput required [matDatepicker]="birthDate" formControlName="birthDate" placeholder="Choose a date">
         <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
         <mat-datepicker #birthDate></mat-datepicker>
+        <mat-error *ngIf="birthDate.required">BirthDate not correct</mat-error>
       </mat-form-field>
       <mat-form-field id="meta-tag-field" class="field-full-width">
         <input matInput #bookInput name="book" formControlName="book" placeholder="Book" [matAutocomplete]="autoBook">
