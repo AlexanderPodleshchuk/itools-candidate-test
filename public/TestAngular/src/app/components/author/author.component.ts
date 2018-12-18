@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
+import { AuthorsService } from '../../services/authors.service';
 import { Router } from '@angular/router';
 
 import { Author } from '../../models/author.model';

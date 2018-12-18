@@ -11,19 +11,18 @@
         <input matInput placeholder="Author ID" formControlName="id" #id>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Author Email" formControlName="email" #email>
+        <input matInput minlength="9" required placeholder="Author Email" formControlName="email" #email>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Author FirstName" formControlName="firstName" #firstName>
+        <input matInput required minlength="3" placeholder="Author FirstName" formControlName="firstName" #firstName>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Author SecondName" formControlName="secondName" #secondName>
+        <input matInput required minlength="5" placeholder="Author SecondName" formControlName="secondName" #secondName>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput [matDatepicker]="birthDate" formControlName="birthDate" placeholder="Choose a date">
+        <input matInput required [matDatepicker]="birthDate" formControlName="birthDate" placeholder="Choose a date">
         <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
         <mat-datepicker #birthDate></mat-datepicker>
-        <!-- <input matInput placeholder="Author BirthDate" formControlName="birthDate" #birthDate> -->
       </mat-form-field>
       <mat-form-field id="meta-tag-field" class="field-full-width">
         <input matInput #bookInput name="book" formControlName="book" placeholder="Book" [matAutocomplete]="autoBook">

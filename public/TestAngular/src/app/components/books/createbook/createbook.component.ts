@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
+import { BookService } from '../../../services/book.service';
 import { switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import { Book } from "../../../models/book.model";
-import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
+import { AuthorsService } from '../../../services/authors.service';
 import { Author } from '../../../models/author.model';
 
 @Component({
@@ -61,13 +61,13 @@ export class CreatebookComponent implements OnInit {
   createFormGroup(book: Book) {
     this.createForm = new FormGroup({
       id: new FormControl(book._id ? book._id : '', Validators.required),
-      name: new FormControl(book.name ? book.name : ''),
-      pages: new FormControl(book.pages ? book.pages : ''),
-      isbn: new FormControl(book.isbn ? book.isbn : ''),
-      year: new FormControl(book.year ? book.year : ''),
-      ebook: new FormControl(book.ebook ? book.ebook : ''),
-      publishing: new FormControl(book.publishing ? book.publishing : ''),
-      author: new FormControl(book.author ? book.author : '')
+      name: new FormControl(book.name ? book.name : '', [Validators.required, Validators.minLength(3)]),
+      pages: new FormControl(book.pages ? book.pages : '', Validators.required),
+      isbn: new FormControl(book.isbn ? book.isbn : '', [Validators.required, Validators.minLength(5)]),
+      year: new FormControl(book.year ? book.year : '', Validators.required),
+      ebook: new FormControl(book.ebook ? book.ebook : '', Validators.required),
+      publishing: new FormControl(book.publishing ? book.publishing : '', [Validators.required, Validators.minLength(6)]),
+      author: new FormControl(book.author ? book.author : '', Validators.required)
     });
 
 

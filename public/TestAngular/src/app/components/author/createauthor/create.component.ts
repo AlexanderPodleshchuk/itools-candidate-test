@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
+import { AuthorsService } from '../../../services/authors.service';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Author } from '../../../models/author.model';
 import { Book } from '../../../models/book.model';
-import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
+import { BookService } from '../../../services/book.service';
 
 @Component({
   selector: 'app-create',
@@ -58,11 +58,11 @@ export class CreateauthorComponent implements OnInit {
   createFormGroup(author: Author) {
     this.createForm = new FormGroup({
       id: new FormControl(author._id ? author._id : '', Validators.required),
-      email: new FormControl(author.email ? author.email : ''),
-      firstName: new FormControl(author.firstName ? author.firstName : ''),
-      secondName: new FormControl(author.secondName ? author.secondName : ''),
-      birthDate: new FormControl(author.birthDate ? author.birthDate : ''),
-      book: new FormControl(author.book ? author.book : '')
+      email: new FormControl(author.email ? author.email : '', [Validators.required, Validators.minLength(9)]),
+      firstName: new FormControl(author.firstName ? author.firstName : '', [Validators.required, Validators.minLength(3)]),
+      secondName: new FormControl(author.secondName ? author.secondName : '', [Validators.required, Validators.minLength(5)]),
+      birthDate: new FormControl(author.birthDate ? author.birthDate : '', Validators.required),
+      book: new FormControl(author.book ? author.book : '', Validators.required)
     });
 
     this.createForm.get('book').valueChanges.subscribe(value => {

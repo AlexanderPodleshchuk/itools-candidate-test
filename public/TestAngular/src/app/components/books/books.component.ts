@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
+import { BookService } from '../../services/book.service';
 import { Router } from '@angular/router';
 
 import { Book } from '../../models/book.model';

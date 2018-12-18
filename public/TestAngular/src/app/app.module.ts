@@ -28,8 +28,8 @@ import {
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthorsService } from 'itools-candidate-test/public/TestAngular/src/app/services/authors.service';
-import { BookService } from 'itools-candidate-test/public/TestAngular/src/app/services/book.service';
+import { AuthorsService } from './services/authors.service';
+import { BookService } from './services/book.service';
 import { AuthorComponent } from './components/author/author.component';
 import { CreateauthorComponent } from './components/author/createauthor/create.component';
 import { BooksComponent } from './components/books/books.component';

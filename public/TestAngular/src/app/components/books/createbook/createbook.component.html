@@ -11,24 +11,24 @@
         <input matInput placeholder="Book ID" formControlName="id" #id>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Book Name" formControlName="name" #name>
+        <input matInput required minlength="3" placeholder="Book Name" formControlName="name" #name>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Book pages" formControlName="pages" #pages>
+        <input matInput required placeholder="Book pages" formControlName="pages" #pages>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Book isbn" formControlName="isbn" #isbn>
+        <input matInput required minlength="5" placeholder="Book isbn" formControlName="isbn" #isbn>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput [matDatepicker]="year" formControlName="year" placeholder="Year">
+        <input matInput required [matDatepicker]="year" formControlName="year" placeholder="Year">
         <mat-datepicker-toggle matSuffix [for]="year"></mat-datepicker-toggle>
         <mat-datepicker #year></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="EBook" formControlName="ebook" #ebook>
+        <input matInput required placeholder="EBook" formControlName="ebook" #ebook>
       </mat-form-field>
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Book Publishing" formControlName="publishing" #publishing>
+        <input matInput required minlength="6" placeholder="Book Publishing" formControlName="publishing" #publishing>
       </mat-form-field>
 
       <mat-form-field id="meta-tag-field" class="field-full-width">

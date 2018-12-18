@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const controller = require('itools-candidate-test/server/controllers/authorsController');
+const controller = require('../controllers/authorsController');
 const router = express.Router();
 
 router.route('/').get(controller.getAuthors);
