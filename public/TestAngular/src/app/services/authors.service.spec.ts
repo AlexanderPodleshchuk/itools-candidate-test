@@ -95,7 +95,7 @@ describe('AuthorsService', () => {
   }));
 
   it('should delete author', inject([AuthorsService, HttpTestingController], (service: AuthorsService, backend: HttpTestingController) => {
-    const addAuthor = { _id: 1,
+    const deleteAuthor = { _id: 1,
       email: "string",
       firstName: "string",
       secondName: "string",
@@ -103,13 +103,13 @@ describe('AuthorsService', () => {
       book: [1,2]};
 
       service.deleteAuthor(1).subscribe(author => {
-        expect(author).toEqual(addAuthor);
+        expect(author).toEqual(deleteAuthor);
       });
 
       backend.expectOne({
         method: 'DELETE',
         url:'http://localhost:3000/api/authors/1'        
-      }).flush(addAuthor);
+      }).flush(deleteAuthor);
   }));
 
 });
