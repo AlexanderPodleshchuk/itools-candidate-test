@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 let Book = Schema({
     _id: { type: Number, unique: true, required: true },
     name: { type: String, unique: true, required: true },
-    pages: { type: Number, required: true },
-    isbn: { type: String, required: true },
-    year: { type: Date, required: true },
-    ebook: { type: Boolean, required:true },
-    publishing:{ type: String, required: true},
-    author:[{type:String}]
+    pages: { type: Number, required: false },
+    year: { type: Date, required: false },
+    price: { type: Number, required: false },  
+    descriptionBook: { type: String, unique: true, required: true },
+    author:[{type:String}],
+    mainImage: {type: String, required: false}
 });
 
 module.exports = mongoose.model('Book', Book);

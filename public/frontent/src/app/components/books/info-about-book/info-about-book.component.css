@@ -1,0 +1,21 @@
+img{
+   width: 100%;
+}
+
+.example-card {
+    width: 80%;
+    margin:0 10%;
+    display: flex;
+    padding-bottom: 0;
+    min-height: 100px;
+    min-width: 50px;
+}
+
+.mat-card-content{
+    width: 40%; 
+}
+
+p{
+    width: 100%;    
+    font-size: 1.6em;
+}

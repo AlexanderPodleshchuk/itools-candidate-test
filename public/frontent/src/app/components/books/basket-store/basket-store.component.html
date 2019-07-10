@@ -1,0 +1,36 @@
+<div class="width-100">
+  <mat-card *ngFor="let book of books" class="basketBook">
+    <mat-card-content style="width: 10%">
+      <img *ngIf="book" mat-card-sm-image [src]="getImagePath(book.mainImage)">
+    </mat-card-content>
+    <mat-card-content class="bookName" style="height: 10%; width: 30%; display: flex; justify-content: center">
+      <p style="text-align: center">{{book.name}}</p>
+    </mat-card-content>
+    <mat-card-content class="authorName" style="height: 10%;width: 25%; display: flex; justify-content: center">
+      <p style="text-align: center">{{book.year | date: 'y'}} года</p>
+    </mat-card-content>
+     <mat-card-content class="width-100" style="height: 10%; width: 15%; display: flex; justify-content: center">
+      <p style="text-align: center">{{book.price}}руб</p>
+    </mat-card-content>
+    
+    <mat-card-content class="width-100" style="height: 10%;width: 15%; display: flex; justify-content: center">
+        <button  *ngIf="basketService.isAdded(book)" (click)="basketService.removeBook(book)" style="padding: 0; color: red;" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+            </button>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="basketBook">
+      <mat-card-content class="formOtpr" >
+          <button [routerLink]="['/books']" mat-raised-button
+          style="width:15%; height: 100%; margin-right:2%; background-color:gray;color:white; font-size: 1em">
+          ГЛАВНАЯ
+        </button>
+        <label style="width:40%; font-size: 1.3em"   >ВВЕДИТЕ EMAIL ДЛЯ ОФОРМЛЕНИЯ ЗАКАЗА:</label>
+        <input style="width:26%; margin-right:2%;" required  type="text">
+        <button (click)="setDataEmail()" [routerLink]="['/books']"   mat-raised-button
+        style="width:15%; height: 100%; background-color:gray;color:white; font-size: 1em">ОТПРАВИТЬ</button>
+      </mat-card-content>
+    </mat-card>
+
+</div>

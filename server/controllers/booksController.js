@@ -1,12 +1,9 @@
+fs = require('fs-extra');
 'use strict';
 const booksDAO = require('../dao/book');
+const imagesDAO = require('../dao/image');
+const ImageItem = require('../dao/models/image');
 
-/** 
- * Send array book entity by id
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function getBooks(req, res) {
 
     booksDAO.getBooks((err, result) => {
@@ -14,13 +11,6 @@ function getBooks(req, res) {
     });
 }
 
-
-/**
- * Send specific book entity by id
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function getBookById(req, res) {
     if (!req.params || !req.params.id) {
         res.status(400).json("Wrong params");
@@ -40,12 +30,6 @@ function getBookById(req, res) {
     });
 }
 
-/**
- * Update specific book entity by id
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function updateBook(req, res) {
 
     if (!req.body && !req.body.name) {
@@ -79,12 +63,6 @@ function updateBook(req, res) {
 
 }
 
-/**
- * Edit specific book entity by id
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function editBook(req, res) {
     if (!req.body && !req.body.name) {
         res.status(400)
@@ -117,12 +95,6 @@ function editBook(req, res) {
     });
 }
 
-/**
- * Create specific book entity
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function addBook(req, res) {
     if (!req.body || !req.body.name) {
         res.status(400)
@@ -141,12 +113,6 @@ function addBook(req, res) {
     });
 }
 
-/**
- * Remove specific book entity by id
- * @param {Object} req - HTTP request object
- * @param {Object} res - HTTP response object
- * @returns {void}
- */
 function removeBook(req, res) {
     if (!req.params || !req.params.id) {
         res.status(400).json("Wrong params");
@@ -168,11 +134,69 @@ function removeBook(req, res) {
     });
 }
 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+let schema = Schema({
+    img: {data: Buffer, contentType: String}
+});
+
+var A = mongoose.model('A', schema);
+
+function uploadImage(req, res) {
+    if (!req.file) {
+        res.status(400).send('No content!!!');
+    }
+
+    var img = fs.readFileSync(req.file.path);
+    var encode_image = img.toString('base64');
+    // Define a JSONobject for the image attributes for saving to database
+
+    var image = new A;
+    // console.log(req.file);
+    image.img.contentType = req.file.mimetype;
+    image.img.data = fs.readFileSync(req.file.path);
+    //   imagesDAO.createImage(finalImg, (err, result) => {
+    //     console.log(result)
+    //     if (err) {
+    //         console.log(err);
+    //         res.status(500).send('Image were not uploaded');
+    //     }    
+    //     console.log('saved to database');
+    //     res.status(200).send(resut._id.toString());
+    //   })
+    image.save(function (err, result) {
+        if (err || !result) {
+            res.status(500).send('Not uploaded!!!');
+        }
+        res.status(200).send(result._id);
+    });
+}
+
+function getImage(req, res) {
+    const id = req.params.id;
+    if (!id) {
+        res.status(400).send('No id param!!!');
+        return;
+    }
+    A.findById(id, function(err, doc) {
+        if (err) {
+            res.status(400).send('No image');
+        } else {
+            // console.log(doc.img.contentType);
+            res.contentType(doc.img.contentType);
+            res.status(200).send(doc.img.data);
+        }
+    });
+}
+
 module.exports = {
     getBooks,
     getBookById,
     updateBook,
     editBook,
     addBook,
-    removeBook
+    removeBook,
+    uploadImage,
+    getImage
 };

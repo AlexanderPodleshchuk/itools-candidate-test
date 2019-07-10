@@ -1,0 +1,61 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create a new Book</h3>
+    </section>
+    <mat-divider> </mat-divider>
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Book ID" formControlName="id" #id>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput required minlength="3" placeholder="Book Name" formControlName="name" #name>
+        <mat-error *ngIf="name.required">Book name not correct</mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput required placeholder="Book pages" formControlName="pages" #pages>
+        <mat-error *ngIf="pages.required">Pages not correct</mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput required [matDatepicker]="year" formControlName="year" placeholder="Year">
+        <mat-datepicker-toggle matSuffix [for]="year"></mat-datepicker-toggle>
+        <mat-datepicker #year></mat-datepicker>
+        <mat-error *ngIf="year.required">Year not correct</mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput required placeholder="Price" formControlName="price" #price>
+        <mat-error *ngIf="price.required">Price not correct</mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput required placeholder="Description Book" formControlName="descriptionBook" #descriptionBook>
+        <mat-error *ngIf="descriptionBook.required">Price not correct</mat-error>
+      </mat-form-field>
+      <mat-form-field id="meta-tag-field" class="field-full-width">
+        <input matInput #authorInput name="author" formControlName="author" placeholder="Author"
+          [matAutocomplete]="autoAuthor">
+        <mat-autocomplete #autoAuthor="matAutocomplete" [displayWith]="displayEntity"
+          (optionSelected)="authorInput.value = '';">
+          <mat-option *ngFor="let author of filteredAuthors" [value]="author">
+            {{author.firstName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-chip-list #chipList class="meta-tags-chips">
+        <mat-chip *ngFor="let author of bookAuthors" (removed)="onRemoveBookAuthor(author._id)">
+          <a [routerLink]="'/author/' + author._id">{{author.firstName}}</a>
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/books">Back</button>
+      <button type="submit" (click)="saveBook()" mat-raised-button [disabled]="createForm.invalid"
+        color="primary">Save</button>
+    </form>
+  </mat-card>
+  <input type="file" (change)="imageChanged($event)" placeholder="Upload a file..." multiple />
+  <img *ngIf="imageId" [src]="getImagePath()">
+</div>

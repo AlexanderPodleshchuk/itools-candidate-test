@@ -1,0 +1,28 @@
+<div class="width-100" style="display:flex; flex-wrap: wrap; padding-top: 50px; padding-left: 50px; ">
+  <div style="width: 100%; display: flex; padding-bottom: 3% ">
+    <mat-form-field class="example-full-width" style="width: 95%">
+      <input type="text" placeholder="Введите название книги" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <mat-card *ngFor="let book of books" style="padding: top 3%" class="mat-elevation-z6 book">
+    <div style="display: flex; justify-content: flex-end">
+      <button mat-icon-button (click)="onDetailsSelect(book._id)" class="action">
+        <mat-icon>info</mat-icon>
+      </button>
+      <button (click)="!basketService.isAdded(book) ? basketService.addBook(book) : basketService.removeBook(book)"
+        mat-icon-button class="action">
+        <mat-icon *ngIf="!basketService.isAdded(book)" style="color: black">shopping_cart</mat-icon>
+        <mat-icon *ngIf="basketService.isAdded(book)" style="color: red">delete_forever</mat-icon>
+      </button>
+    </div>
+    <img class="width-100" style="max-height: 80%;" mat-card-image [src]="getImagePath(book.mainImage)">
+    <mat-card-header class="width-100" style="height: 10%; display: flex; justify-content: center">
+      <mat-card-title style="text-align: center">{{book.name}}</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
